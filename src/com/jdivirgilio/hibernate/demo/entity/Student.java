@@ -13,7 +13,7 @@ public class Student {
 
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // This will cause hibernate to populate the PK 
 	private int id;
 	
 	@Column(name="first_name")
