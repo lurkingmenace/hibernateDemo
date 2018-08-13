@@ -21,16 +21,22 @@ public class CreateStudentDemo {
 		Session session = factory.getCurrentSession();
 	
 		try {
-			// Create student object
+			// Session can only be used on one item.
 			Student newStudent = new Student("John", "DiVirgilio", "anyone@anywhere.com");
-			
-			// start a transaction
 			session.beginTransaction();
-			
-			// save the obj to the db
 			session.save(newStudent);
+			session.getTransaction().commit();
 			
-			// commit it
+			session = factory.getCurrentSession();
+			newStudent = new Student("Mary", "Jane", "applebottom@anywhere.com");
+			session.beginTransaction();
+			session.save(newStudent);
+			session.getTransaction().commit();
+
+			session = factory.getCurrentSession();
+			newStudent = new Student("Apple", "Bottom", "applebottom@anywhere.com");
+			session.beginTransaction();
+			session.save(newStudent);
 			session.getTransaction().commit();
 		}
 		finally {
